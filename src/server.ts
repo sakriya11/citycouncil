@@ -3,12 +3,14 @@ import config from "./config";
 import { createServer } from "http";
 import helmet from 'helmet';
 import db from './config/db/db';
+import routes from "../src/routes/index"
 
 const server = Express();
 const httpServer = createServer(server);
 
 server.use(helmet()); //for security 
 server.use(Express.json());
+server.use('/api',routes);
 
 //db connection
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
