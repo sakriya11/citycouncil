@@ -14,7 +14,8 @@ import config from "../config";
 const userController = {
   userRegistration: async (req: Request, res: Response): Promise<Response> => {
     try {
-      const { fullName, email, password, confirmPassword, gender } = req.body;
+      const { fullName, email, password, confirmPassword,role } = req.body;
+      // console.log("request",req.body);
       const emailExist = await User.findOne({
         email: email,
       });
@@ -29,11 +30,14 @@ const userController = {
         });
       }
 
+      
+
       const registerUser = await User.create({
         fullName,
         email,
         password: bcryptjs.hashSync(password),
-        gender,
+        role:role
+        
       });
 
       const emailVerificationToken = await Token.create({
@@ -61,9 +65,10 @@ const userController = {
   emailVerification: async (req: Request, res: Response): Promise<Response> => {
     try {
       const { verificationCode } = req.body;
+      const verifyCode = Number(verificationCode);
 
       const tokenExist = await Token.findOne({
-        token: verificationCode,
+        token: verifyCode,
       });
 
       if (tokenExist) {
@@ -98,6 +103,11 @@ const userController = {
           message: "Given user does not exist",
         });
       }
+      if(userExist.emailVerified !== true){
+        return res.status(409).send({
+          message:"Please verify email before loggin in"
+        })
+      }
       const passwordValidation = bcryptjs.compareSync(
         password,
         userExist.password
@@ -124,8 +134,6 @@ const userController = {
       });
     }
   },
-
-  
 };
 
 export default userController;

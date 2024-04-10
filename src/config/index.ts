@@ -8,6 +8,12 @@ const config = {
     host: process.env.HOST,
     port: process.env.PORT,
     url: process.env.URL || "http:/localhost:3000",
+    originRegex:
+      process.env.ORIGIN_REGEX ,
+    allowedOrigins:
+      process.env.ALLOWED_ORIGINS 
+      // ||
+      // "http://localhost:3000,http://localhost:4000,https://domainname.com",
   },
   db: {
     mongoUrl: process.env.MONGO_URL,

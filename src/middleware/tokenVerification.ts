@@ -55,6 +55,25 @@ const authorization = {
       });
     }
   },
+
+  hasRole: async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ): Promise<void> => {
+    try {
+      const user = (req as IReqUser).user;
+      if (user.role) {
+        next();
+      } else {
+        res.status(403).send({
+          message: "User does not have permission",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  },
 };
 
 export default authorization;

@@ -10,14 +10,16 @@ const userSchema = new Schema(
     },
     password: String,
     confirmPassword: String,
-    gender: {
-      type: String,
-      enum: ["male", "female"],
-    },
+   
     emailVerified: {
       type: Boolean,
       default: false,
     },
+    role:{
+      type:String,
+      enum:["user","admin"],
+      default:"user"
+    }
   },
   { timestamps: true }
 );
@@ -28,6 +30,7 @@ export interface IUser extends Document {
   password: string;
   confirmPassword: string;
   emailVerified:boolean;
+  role:string;
 }
 
 const user = model<IUser>("User", userSchema);
