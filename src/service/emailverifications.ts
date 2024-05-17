@@ -32,12 +32,17 @@ const transportConfig: Transport = {
 
 export const transport = nodemailer.createTransport(transportConfig);
 
-export const mailOption = (to: string, name: string, code: number): MailOption => {
+export const mailOption = (
+  to: string,
+  name: string,
+  code: number
+): MailOption => {
   return {
     from: config.email.sender_email,
     to: to,
     subject: "Email verification code",
-    html: `hello ${name} your code is ${code}`,
+    html: `Hello ${name} welcome to kathmandu city council. 
+    Your registeration code is ${code}`,
   };
 };
 

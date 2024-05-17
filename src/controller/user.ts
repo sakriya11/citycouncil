@@ -14,7 +14,7 @@ import config from "../config";
 const userController = {
   userRegistration: async (req: Request, res: Response): Promise<Response> => {
     try {
-      const { fullName, email, password, confirmPassword,role } = req.body;
+      const { fullName, email, password, confirmPassword, role } = req.body;
       // console.log("request",req.body);
       const emailExist = await User.findOne({
         email: email,
@@ -30,14 +30,11 @@ const userController = {
         });
       }
 
-      
-
       const registerUser = await User.create({
         fullName,
         email,
         password: bcryptjs.hashSync(password),
-        role:role
-        
+        role: role,
       });
 
       const emailVerificationToken = await Token.create({
@@ -103,10 +100,10 @@ const userController = {
           message: "Given user does not exist",
         });
       }
-      if(userExist.emailVerified !== true){
+      if (userExist.emailVerified !== true) {
         return res.status(409).send({
-          message:"Please verify email before loggin in"
-        })
+          message: "Please verify email before loggin in",
+        });
       }
       const passwordValidation = bcryptjs.compareSync(
         password,
