@@ -6,9 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon",
-    "build": "rimraf dist && tsc",
-    "ts.check": "tsc --project tsconfig.json",
-    "add-build": "git add dist"
+    "build": "tsc && git status && git add ."
   },
   "author": "sakriya khadka",
   "license": "ISC",
@@ -35,10 +33,5 @@
     "helmet": "^7.1.0",
     "mongoose": "^8.2.2",
     "nodemailer": "^6.9.13"
-  },
-  "pre-commit": [
-    "ts.check",
-    "build",
-    "add-build"
-  ]
+  }
 }
