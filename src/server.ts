@@ -24,7 +24,7 @@ const corsOption = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+  methods: ["GET","POST"],
   preflightContinue: false,
   optionsSuccessStatus: 204
 };
