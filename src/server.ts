@@ -14,6 +14,7 @@ const corsOption = {
   credentials: true,
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   origin: function (origin: string, callback: any) {
+    console.log("originnnnnnnnn",origin)
     if (!origin) {
       callback(null, true);
       return;
