@@ -35,9 +35,11 @@ const httpServer = createServer(server);
 server.use(cors({
   credentials: true,
   preflightContinue: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   methods: ['GET', 'POST', 'PUT', 'PATCH' , 'DELETE', 'OPTIONS'],
   origin: true
 }));
+
 // console.log(origin);
 
 server.use(helmet()); //for security 
