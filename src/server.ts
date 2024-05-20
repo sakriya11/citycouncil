@@ -32,13 +32,18 @@ const allowedOrigins = config.app.allowedOrigins.split(",");
 
 const server = Express();
 const httpServer = createServer(server);
-server.use(cors({
+const corsOptions = {
   credentials: true,
   preflightContinue: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  origin: 'https://master--kathmanducitycouncil.netlify.app',
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
-  methods: ['GET', 'POST', 'PUT', 'PATCH' , 'DELETE', 'OPTIONS'],
-  origin: true
-}));
+};
+
+server.use(cors(corsOptions));
+
+// Handle preflight requests explicitly
+server.options('*', cors(corsOptions));
 
 // console.log(origin);
 
