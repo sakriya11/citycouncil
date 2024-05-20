@@ -33,13 +33,11 @@ const allowedOrigins = config.app.allowedOrigins.split(",");
 const server = Express();
 const httpServer = createServer(server);
 server.use(cors({
-  origin:["https://citycouncil-frontend.vercel.app/","http://localhost:3000"],
+  origin:["https://citycouncil-frontend.vercel.app/","http://localhost:3000","https://master--kathmanducitycouncil.netlify.app/"],
   methods: ["GET","POST"],
   credentials:true
-
-
 }));
-
+// console.log(origin);
 
 server.use(helmet()); //for security 
 server.use(Express.json());
