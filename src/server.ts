@@ -33,9 +33,10 @@ const allowedOrigins = config.app.allowedOrigins.split(",");
 const server = Express();
 const httpServer = createServer(server);
 server.use(cors({
-  origin:true,
-  methods: ["GET","POST"],
-  credentials:true
+  credentials: true,
+  preflightContinue: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH' , 'DELETE', 'OPTIONS'],
+  origin: true
 }));
 // console.log(origin);
 
