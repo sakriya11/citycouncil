@@ -40,7 +40,7 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
 };
 
-server.use(cors(corsOptions));
+server.use(cors());
 
 // Handle preflight requests explicitly
 server.options('*', cors(corsOptions));
