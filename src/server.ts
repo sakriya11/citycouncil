@@ -33,7 +33,7 @@ const allowedOrigins = config.app.allowedOrigins.split(",");
 const server = Express();
 const httpServer = createServer(server);
 server.use(cors({
-  origin:"https://master--kathmanducitycouncil.netlify.app/",
+  origin:true,
   methods: ["GET","POST"],
   credentials:true
 }));
