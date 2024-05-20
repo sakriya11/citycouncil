@@ -53,7 +53,7 @@ server.use('/api',routes);
 
 
 //db connection
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+db.on("error", console.error.bind(console, "MongoDB connection errorrr:"));
 db.on("close", function () {
   console.log("DB connection is close");
 });
